@@ -5,19 +5,26 @@ import axios from 'axios'
 
 const App = () => {
   let [data, setData] = useState([]);
+  let [err, setErr] = useState('');
 
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get('https://dummyjson.com/products');
-        // console.log(response.data.products);
+        console.log(response.data.products);
         setData(response.data.products);
+        if(!response.data.products){
+          setErr('No data found');
+          return;
+        }
+        setErr('');
       }
       catch (err) {
         console.log(err);
+        setErr('No data found');
       }
     })();
-  }, [data])
+  }, [])
 
   return (
     <div>
@@ -28,12 +35,13 @@ const App = () => {
             <h1>Data Fetched from API</h1>
             {
               data.map(value => (
-                <pre>{JSON.stringify(value)}</pre>
+                <pre>{JSON.stringify(value, null, 4)}</pre>
               ))
             }
-          </div> :
-          <p>Loading...</p>
+          </div> :!err?
+          <p>Loading...</p>:<p>{err}</p>
       }
+      
     </div>
   )
 }
