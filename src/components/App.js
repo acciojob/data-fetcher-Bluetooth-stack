@@ -35,7 +35,7 @@ const App = () => {
             <h1>Data Fetched from API</h1>
             {
               data.map(value => (
-                <pre>{JSON.stringify(value, null, 4)}</pre>
+                <pre>{JSON.stringify(value, null, 3)},</pre>
               ))
             }
           </div> :!err?
