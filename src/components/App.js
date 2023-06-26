@@ -34,7 +34,7 @@ const App = () => {
           <div>
             <h1>Data Fetched from API</h1>
             {
-                <pre>{JSON.stringify(data, null, 3)},</pre>
+                <pre>{JSON.stringify(data, null, 2)},</pre>
             }
           </div> : !err ?
             <p>Loading...</p> : <p>{err}</p>
