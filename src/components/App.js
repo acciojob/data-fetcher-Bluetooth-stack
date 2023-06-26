@@ -4,7 +4,7 @@ import './../styles/App.css';
 import axios from 'axios'
 
 const App = () => {
-  let [data, setData] = useState({});
+  let [data, setData] = useState(null);
   let [err, setErr] = useState('');
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const App = () => {
       }
       catch (err) {
         console.log(err);
-        setErr('No data found');
+        setErr(`An error occurred: ${err}`);
       }
     })();
   }, [])
